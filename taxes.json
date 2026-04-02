@@ -1,0 +1,85 @@
+{
+  "Federal": {
+    "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+    "Single": [
+      {"limit": 11600, "rate": 0.10},
+      {"limit": 47150, "rate": 0.12},
+      {"limit": 100525, "rate": 0.22},
+      {"limit": 191950, "rate": 0.24},
+      {"limit": 243725, "rate": 0.32},
+      {"limit": 609350, "rate": 0.35},
+      {"limit": null, "rate": 0.37}
+    ],
+    "Joint": [
+      {"limit": 23200, "rate": 0.10},
+      {"limit": 94300, "rate": 0.12},
+      {"limit": 201050, "rate": 0.22},
+      {"limit": 383900, "rate": 0.24},
+      {"limit": 487450, "rate": 0.32},
+      {"limit": 731200, "rate": 0.35},
+      {"limit": null, "rate": 0.37}
+    ]
+  },
+  "States": {
+    "AZ": {
+      "state_name": "Arizona",
+      "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": null, "rate": 0.025}],
+      "Joint": [{"limit": null, "rate": 0.025}]
+    },
+    "TX": {
+      "state_name": "Texas",
+      "Standard_Deduction": {"Single": 0, "Joint": 0},
+      "Single": [{"limit": null, "rate": 0.0}],
+      "Joint": [{"limit": null, "rate": 0.0}]
+    },
+    "WA": {
+      "state_name": "Washington",
+      "Standard_Deduction": {"Single": 0, "Joint": 0},
+      "Single": [{"limit": null, "rate": 0.0}],
+      "Joint": [{"limit": null, "rate": 0.0}]
+    },
+    "CA": {
+      "state_name": "California",
+      "Standard_Deduction": {"Single": 5363, "Joint": 10726},
+      "Single": [
+        {"limit": 10412, "rate": 0.01},
+        {"limit": 24684, "rate": 0.02},
+        {"limit": 38959, "rate": 0.04},
+        {"limit": 54081, "rate": 0.06},
+        {"limit": 68350, "rate": 0.08},
+        {"limit": 349137, "rate": 0.093},
+        {"limit": null, "rate": 0.103}
+      ],
+      "Joint": [
+        {"limit": 20824, "rate": 0.01},
+        {"limit": 49368, "rate": 0.02},
+        {"limit": 77918, "rate": 0.04},
+        {"limit": 108162, "rate": 0.06},
+        {"limit": 136700, "rate": 0.08},
+        {"limit": 698274, "rate": 0.093},
+        {"limit": null, "rate": 0.103}
+      ]
+    },
+    "NY": {
+      "state_name": "New York",
+      "Standard_Deduction": {"Single": 8000, "Joint": 16050},
+      "Single": [
+        {"limit": 8500, "rate": 0.04},
+        {"limit": 11700, "rate": 0.045},
+        {"limit": 13900, "rate": 0.0525},
+        {"limit": 80650, "rate": 0.0585},
+        {"limit": 215400, "rate": 0.0625},
+        {"limit": null, "rate": 0.0685}
+      ],
+      "Joint": [
+        {"limit": 17000, "rate": 0.04},
+        {"limit": 23600, "rate": 0.045},
+        {"limit": 27900, "rate": 0.0525},
+        {"limit": 161550, "rate": 0.0585},
+        {"limit": 323200, "rate": 0.0625},
+        {"limit": null, "rate": 0.0685}
+      ]
+    }
+  }
+}
