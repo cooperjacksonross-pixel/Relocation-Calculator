@@ -2,84 +2,184 @@
   "Federal": {
     "Standard_Deduction": {"Single": 14600, "Joint": 29200},
     "Single": [
-      {"limit": 11600, "rate": 0.10},
-      {"limit": 47150, "rate": 0.12},
-      {"limit": 100525, "rate": 0.22},
-      {"limit": 191950, "rate": 0.24},
-      {"limit": 243725, "rate": 0.32},
-      {"limit": 609350, "rate": 0.35},
-      {"limit": null, "rate": 0.37}
+      {"limit": 11600, "rate": 0.10}, {"limit": 47150, "rate": 0.12}, {"limit": 100525, "rate": 0.22}, {"limit": 191950, "rate": 0.24}, {"limit": 243725, "rate": 0.32}, {"limit": 609350, "rate": 0.35}, {"limit": null, "rate": 0.37}
     ],
     "Joint": [
-      {"limit": 23200, "rate": 0.10},
-      {"limit": 94300, "rate": 0.12},
-      {"limit": 201050, "rate": 0.22},
-      {"limit": 383900, "rate": 0.24},
-      {"limit": 487450, "rate": 0.32},
-      {"limit": 731200, "rate": 0.35},
-      {"limit": null, "rate": 0.37}
+      {"limit": 23200, "rate": 0.10}, {"limit": 94300, "rate": 0.12}, {"limit": 201050, "rate": 0.22}, {"limit": 383900, "rate": 0.24}, {"limit": 487450, "rate": 0.32}, {"limit": 731200, "rate": 0.35}, {"limit": null, "rate": 0.37}
     ]
   },
   "States": {
-    "AZ": {
-      "state_name": "Arizona",
-      "Standard_Deduction": {"Single": 14600, "Joint": 29200},
-      "Single": [{"limit": null, "rate": 0.025}],
-      "Joint": [{"limit": null, "rate": 0.025}]
-    },
-    "TX": {
-      "state_name": "Texas",
-      "Standard_Deduction": {"Single": 0, "Joint": 0},
-      "Single": [{"limit": null, "rate": 0.0}],
-      "Joint": [{"limit": null, "rate": 0.0}]
-    },
-    "WA": {
-      "state_name": "Washington",
-      "Standard_Deduction": {"Single": 0, "Joint": 0},
-      "Single": [{"limit": null, "rate": 0.0}],
-      "Joint": [{"limit": null, "rate": 0.0}]
-    },
+    "AK": {"state_name": "Alaska", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "FL": {"state_name": "Florida", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "NV": {"state_name": "Nevada", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "NH": {"state_name": "New Hampshire", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "SD": {"state_name": "South Dakota", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "TN": {"state_name": "Tennessee", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "TX": {"state_name": "Texas", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "WA": {"state_name": "Washington", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+    "WY": {"state_name": "Wyoming", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0}], "Joint": [{"limit": null, "rate": 0.0}]},
+
+    "AZ": {"state_name": "Arizona", "Standard_Deduction": {"Single": 14600, "Joint": 29200}, "Single": [{"limit": null, "rate": 0.025}], "Joint": [{"limit": null, "rate": 0.025}]},
+    "CO": {"state_name": "Colorado", "Standard_Deduction": {"Single": 14600, "Joint": 29200}, "Single": [{"limit": null, "rate": 0.044}], "Joint": [{"limit": null, "rate": 0.044}]},
+    "ID": {"state_name": "Idaho", "Standard_Deduction": {"Single": 14600, "Joint": 29200}, "Single": [{"limit": null, "rate": 0.058}], "Joint": [{"limit": null, "rate": 0.058}]},
+    "IL": {"state_name": "Illinois", "Standard_Deduction": {"Single": 2425, "Joint": 4850}, "Single": [{"limit": null, "rate": 0.0495}], "Joint": [{"limit": null, "rate": 0.0495}]},
+    "IN": {"state_name": "Indiana", "Standard_Deduction": {"Single": 1000, "Joint": 2000}, "Single": [{"limit": null, "rate": 0.0305}], "Joint": [{"limit": null, "rate": 0.0305}]},
+    "KY": {"state_name": "Kentucky", "Standard_Deduction": {"Single": 3150, "Joint": 3150}, "Single": [{"limit": null, "rate": 0.04}], "Joint": [{"limit": null, "rate": 0.04}]},
+    "MA": {"state_name": "Massachusetts", "Standard_Deduction": {"Single": 4400, "Joint": 8800}, "Single": [{"limit": null, "rate": 0.05}], "Joint": [{"limit": null, "rate": 0.05}]},
+    "MI": {"state_name": "Michigan", "Standard_Deduction": {"Single": 5400, "Joint": 10800}, "Single": [{"limit": null, "rate": 0.0425}], "Joint": [{"limit": null, "rate": 0.0425}]},
+    "MS": {"state_name": "Mississippi", "Standard_Deduction": {"Single": 2300, "Joint": 4600}, "Single": [{"limit": null, "rate": 0.047}], "Joint": [{"limit": null, "rate": 0.047}]},
+    "NC": {"state_name": "North Carolina", "Standard_Deduction": {"Single": 12750, "Joint": 25500}, "Single": [{"limit": null, "rate": 0.045}], "Joint": [{"limit": null, "rate": 0.045}]},
+    "PA": {"state_name": "Pennsylvania", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0307}], "Joint": [{"limit": null, "rate": 0.0307}]},
+    "UT": {"state_name": "Utah", "Standard_Deduction": {"Single": 0, "Joint": 0}, "Single": [{"limit": null, "rate": 0.0465}], "Joint": [{"limit": null, "rate": 0.0465}]},
+
     "CA": {
-      "state_name": "California",
-      "Standard_Deduction": {"Single": 5363, "Joint": 10726},
-      "Single": [
-        {"limit": 10412, "rate": 0.01},
-        {"limit": 24684, "rate": 0.02},
-        {"limit": 38959, "rate": 0.04},
-        {"limit": 54081, "rate": 0.06},
-        {"limit": 68350, "rate": 0.08},
-        {"limit": 349137, "rate": 0.093},
-        {"limit": null, "rate": 0.103}
-      ],
-      "Joint": [
-        {"limit": 20824, "rate": 0.01},
-        {"limit": 49368, "rate": 0.02},
-        {"limit": 77918, "rate": 0.04},
-        {"limit": 108162, "rate": 0.06},
-        {"limit": 136700, "rate": 0.08},
-        {"limit": 698274, "rate": 0.093},
-        {"limit": null, "rate": 0.103}
-      ]
+      "state_name": "California", "Standard_Deduction": {"Single": 5363, "Joint": 10726},
+      "Single": [{"limit": 10412, "rate": 0.01}, {"limit": 24684, "rate": 0.02}, {"limit": 38959, "rate": 0.04}, {"limit": 54081, "rate": 0.06}, {"limit": 68350, "rate": 0.08}, {"limit": 349137, "rate": 0.093}, {"limit": null, "rate": 0.103}],
+      "Joint": [{"limit": 20824, "rate": 0.01}, {"limit": 49368, "rate": 0.02}, {"limit": 77918, "rate": 0.04}, {"limit": 108162, "rate": 0.06}, {"limit": 136700, "rate": 0.08}, {"limit": 698274, "rate": 0.093}, {"limit": null, "rate": 0.103}]
     },
     "NY": {
-      "state_name": "New York",
-      "Standard_Deduction": {"Single": 8000, "Joint": 16050},
-      "Single": [
-        {"limit": 8500, "rate": 0.04},
-        {"limit": 11700, "rate": 0.045},
-        {"limit": 13900, "rate": 0.0525},
-        {"limit": 80650, "rate": 0.0585},
-        {"limit": 215400, "rate": 0.0625},
-        {"limit": null, "rate": 0.0685}
-      ],
-      "Joint": [
-        {"limit": 17000, "rate": 0.04},
-        {"limit": 23600, "rate": 0.045},
-        {"limit": 27900, "rate": 0.0525},
-        {"limit": 161550, "rate": 0.0585},
-        {"limit": 323200, "rate": 0.0625},
-        {"limit": null, "rate": 0.0685}
-      ]
+      "state_name": "New York", "Standard_Deduction": {"Single": 8000, "Joint": 16050},
+      "Single": [{"limit": 8500, "rate": 0.04}, {"limit": 11700, "rate": 0.045}, {"limit": 13900, "rate": 0.0525}, {"limit": 80650, "rate": 0.0585}, {"limit": 215400, "rate": 0.0625}, {"limit": null, "rate": 0.0685}],
+      "Joint": [{"limit": 17000, "rate": 0.04}, {"limit": 23600, "rate": 0.045}, {"limit": 27900, "rate": 0.0525}, {"limit": 161550, "rate": 0.0585}, {"limit": 323200, "rate": 0.0625}, {"limit": null, "rate": 0.0685}]
+    },
+    "NJ": {
+      "state_name": "New Jersey", "Standard_Deduction": {"Single": 1000, "Joint": 1000},
+      "Single": [{"limit": 20000, "rate": 0.014}, {"limit": 35000, "rate": 0.0175}, {"limit": 40000, "rate": 0.035}, {"limit": 75000, "rate": 0.0552}, {"limit": 500000, "rate": 0.0637}, {"limit": 1000000, "rate": 0.0897}, {"limit": null, "rate": 0.1075}],
+      "Joint": [{"limit": 20000, "rate": 0.014}, {"limit": 50000, "rate": 0.0175}, {"limit": 70000, "rate": 0.0245}, {"limit": 80000, "rate": 0.035}, {"limit": 150000, "rate": 0.0552}, {"limit": 500000, "rate": 0.0637}, {"limit": null, "rate": 0.0897}]
+    },
+    "OR": {
+      "state_name": "Oregon", "Standard_Deduction": {"Single": 2605, "Joint": 5210},
+      "Single": [{"limit": 4050, "rate": 0.0475}, {"limit": 10200, "rate": 0.0675}, {"limit": 125000, "rate": 0.0875}, {"limit": null, "rate": 0.099}],
+      "Joint": [{"limit": 8100, "rate": 0.0475}, {"limit": 20400, "rate": 0.0675}, {"limit": 250000, "rate": 0.0875}, {"limit": null, "rate": 0.099}]
+    },
+    "HI": {
+      "state_name": "Hawaii", "Standard_Deduction": {"Single": 2200, "Joint": 4400},
+      "Single": [{"limit": 2400, "rate": 0.014}, {"limit": 4800, "rate": 0.032}, {"limit": 9600, "rate": 0.055}, {"limit": 14400, "rate": 0.064}, {"limit": 19200, "rate": 0.068}, {"limit": 24000, "rate": 0.072}, {"limit": 36000, "rate": 0.076}, {"limit": 48000, "rate": 0.079}, {"limit": 150000, "rate": 0.0825}, {"limit": null, "rate": 0.11}],
+      "Joint": [{"limit": 4800, "rate": 0.014}, {"limit": 9600, "rate": 0.032}, {"limit": 19200, "rate": 0.055}, {"limit": 28800, "rate": 0.064}, {"limit": 38400, "rate": 0.068}, {"limit": 48000, "rate": 0.072}, {"limit": 72000, "rate": 0.076}, {"limit": 96000, "rate": 0.079}, {"limit": 300000, "rate": 0.0825}, {"limit": null, "rate": 0.11}]
+    },
+    "VA": {
+      "state_name": "Virginia", "Standard_Deduction": {"Single": 8000, "Joint": 16000},
+      "Single": [{"limit": 3000, "rate": 0.02}, {"limit": 5000, "rate": 0.03}, {"limit": 17000, "rate": 0.05}, {"limit": null, "rate": 0.0575}],
+      "Joint": [{"limit": 3000, "rate": 0.02}, {"limit": 5000, "rate": 0.03}, {"limit": 17000, "rate": 0.05}, {"limit": null, "rate": 0.0575}]
+    },
+    "MD": {
+      "state_name": "Maryland", "Standard_Deduction": {"Single": 2550, "Joint": 5100},
+      "Single": [{"limit": 1000, "rate": 0.02}, {"limit": 2000, "rate": 0.03}, {"limit": 3000, "rate": 0.04}, {"limit": 100000, "rate": 0.0475}, {"limit": 125000, "rate": 0.05}, {"limit": 150000, "rate": 0.0525}, {"limit": 250000, "rate": 0.055}, {"limit": null, "rate": 0.0575}],
+      "Joint": [{"limit": 1000, "rate": 0.02}, {"limit": 2000, "rate": 0.03}, {"limit": 3000, "rate": 0.04}, {"limit": 150000, "rate": 0.0475}, {"limit": 175000, "rate": 0.05}, {"limit": 225000, "rate": 0.0525}, {"limit": 300000, "rate": 0.055}, {"limit": null, "rate": 0.0575}]
+    },
+    "MN": {
+      "state_name": "Minnesota", "Standard_Deduction": {"Single": 13825, "Joint": 27650},
+      "Single": [{"limit": 30070, "rate": 0.0535}, {"limit": 98760, "rate": 0.068}, {"limit": 183340, "rate": 0.0785}, {"limit": null, "rate": 0.0985}],
+      "Joint": [{"limit": 43950, "rate": 0.0535}, {"limit": 174610, "rate": 0.068}, {"limit": 304970, "rate": 0.0785}, {"limit": null, "rate": 0.0985}]
+    },
+    "WI": {
+      "state_name": "Wisconsin", "Standard_Deduction": {"Single": 12760, "Joint": 24200},
+      "Single": [{"limit": 13810, "rate": 0.035}, {"limit": 27630, "rate": 0.0465}, {"limit": 304170, "rate": 0.053}, {"limit": null, "rate": 0.0765}],
+      "Joint": [{"limit": 18420, "rate": 0.035}, {"limit": 36840, "rate": 0.0465}, {"limit": 405550, "rate": 0.053}, {"limit": null, "rate": 0.0765}]
+    },
+    "OH": {
+      "state_name": "Ohio", "Standard_Deduction": {"Single": 0, "Joint": 0},
+      "Single": [{"limit": 26050, "rate": 0.0}, {"limit": 100000, "rate": 0.0275}, {"limit": 115300, "rate": 0.03688}, {"limit": null, "rate": 0.0375}],
+      "Joint": [{"limit": 26050, "rate": 0.0}, {"limit": 100000, "rate": 0.0275}, {"limit": 115300, "rate": 0.03688}, {"limit": null, "rate": 0.0375}]
+    },
+    "GA": {
+      "state_name": "Georgia", "Standard_Deduction": {"Single": 5400, "Joint": 7100},
+      "Single": [{"limit": 750, "rate": 0.01}, {"limit": 2250, "rate": 0.02}, {"limit": 3750, "rate": 0.03}, {"limit": 5250, "rate": 0.04}, {"limit": 7000, "rate": 0.05}, {"limit": null, "rate": 0.0549}],
+      "Joint": [{"limit": 1000, "rate": 0.01}, {"limit": 3000, "rate": 0.02}, {"limit": 5000, "rate": 0.03}, {"limit": 7000, "rate": 0.04}, {"limit": 10000, "rate": 0.05}, {"limit": null, "rate": 0.0549}]
+    },
+    "SC": {
+      "state_name": "South Carolina", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 3460, "rate": 0.0}, {"limit": 17330, "rate": 0.03}, {"limit": null, "rate": 0.064}],
+      "Joint": [{"limit": 3460, "rate": 0.0}, {"limit": 17330, "rate": 0.03}, {"limit": null, "rate": 0.064}]
+    },
+    "AL": {
+      "state_name": "Alabama", "Standard_Deduction": {"Single": 3000, "Joint": 8500},
+      "Single": [{"limit": 500, "rate": 0.02}, {"limit": 3000, "rate": 0.04}, {"limit": null, "rate": 0.05}],
+      "Joint": [{"limit": 1000, "rate": 0.02}, {"limit": 6000, "rate": 0.04}, {"limit": null, "rate": 0.05}]
+    },
+    "AR": {
+      "state_name": "Arkansas", "Standard_Deduction": {"Single": 2340, "Joint": 4680},
+      "Single": [{"limit": 5099, "rate": 0.0}, {"limit": 10299, "rate": 0.02}, {"limit": 14699, "rate": 0.03}, {"limit": 24299, "rate": 0.034}, {"limit": null, "rate": 0.044}],
+      "Joint": [{"limit": 5099, "rate": 0.0}, {"limit": 10299, "rate": 0.02}, {"limit": 14699, "rate": 0.03}, {"limit": 24299, "rate": 0.034}, {"limit": null, "rate": 0.044}]
+    },
+    "CT": {
+      "state_name": "Connecticut", "Standard_Deduction": {"Single": 15000, "Joint": 24000},
+      "Single": [{"limit": 10000, "rate": 0.02}, {"limit": 50000, "rate": 0.045}, {"limit": 100000, "rate": 0.05}, {"limit": 250000, "rate": 0.055}, {"limit": 500000, "rate": 0.06}, {"limit": null, "rate": 0.0699}],
+      "Joint": [{"limit": 20000, "rate": 0.02}, {"limit": 100000, "rate": 0.045}, {"limit": 200000, "rate": 0.05}, {"limit": 500000, "rate": 0.055}, {"limit": 1000000, "rate": 0.06}, {"limit": null, "rate": 0.0699}]
+    },
+    "DE": {
+      "state_name": "Delaware", "Standard_Deduction": {"Single": 3250, "Joint": 6500},
+      "Single": [{"limit": 2000, "rate": 0.0}, {"limit": 5000, "rate": 0.022}, {"limit": 10000, "rate": 0.039}, {"limit": 20000, "rate": 0.048}, {"limit": 25000, "rate": 0.052}, {"limit": 60000, "rate": 0.0555}, {"limit": null, "rate": 0.066}],
+      "Joint": [{"limit": 2000, "rate": 0.0}, {"limit": 5000, "rate": 0.022}, {"limit": 10000, "rate": 0.039}, {"limit": 20000, "rate": 0.048}, {"limit": 25000, "rate": 0.052}, {"limit": 60000, "rate": 0.0555}, {"limit": null, "rate": 0.066}]
+    },
+    "DC": {
+      "state_name": "District of Columbia", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 10000, "rate": 0.04}, {"limit": 40000, "rate": 0.06}, {"limit": 60000, "rate": 0.065}, {"limit": 250000, "rate": 0.085}, {"limit": 500000, "rate": 0.0925}, {"limit": 1000000, "rate": 0.0975}, {"limit": null, "rate": 0.1075}],
+      "Joint": [{"limit": 10000, "rate": 0.04}, {"limit": 40000, "rate": 0.06}, {"limit": 60000, "rate": 0.065}, {"limit": 250000, "rate": 0.085}, {"limit": 500000, "rate": 0.0925}, {"limit": 1000000, "rate": 0.0975}, {"limit": null, "rate": 0.1075}]
+    },
+    "IA": {
+      "state_name": "Iowa", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": null, "rate": 0.057}], "Joint": [{"limit": null, "rate": 0.057}]
+    },
+    "KS": {
+      "state_name": "Kansas", "Standard_Deduction": {"Single": 3500, "Joint": 8000},
+      "Single": [{"limit": 15000, "rate": 0.031}, {"limit": 30000, "rate": 0.0525}, {"limit": null, "rate": 0.057}],
+      "Joint": [{"limit": 30000, "rate": 0.031}, {"limit": 60000, "rate": 0.0525}, {"limit": null, "rate": 0.057}]
+    },
+    "LA": {
+      "state_name": "Louisiana", "Standard_Deduction": {"Single": 4500, "Joint": 9000},
+      "Single": [{"limit": 12500, "rate": 0.0185}, {"limit": 50000, "rate": 0.035}, {"limit": null, "rate": 0.0425}],
+      "Joint": [{"limit": 25000, "rate": 0.0185}, {"limit": 100000, "rate": 0.035}, {"limit": null, "rate": 0.0425}]
+    },
+    "ME": {
+      "state_name": "Maine", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 24500, "rate": 0.058}, {"limit": 58050, "rate": 0.0715}, {"limit": null, "rate": 0.0715}],
+      "Joint": [{"limit": 49050, "rate": 0.058}, {"limit": 116150, "rate": 0.0715}, {"limit": null, "rate": 0.0715}]
+    },
+    "MO": {
+      "state_name": "Missouri", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 1207, "rate": 0.02}, {"limit": 2414, "rate": 0.025}, {"limit": 3621, "rate": 0.03}, {"limit": 4828, "rate": 0.035}, {"limit": 6035, "rate": 0.04}, {"limit": 7242, "rate": 0.045}, {"limit": 8449, "rate": 0.048}, {"limit": null, "rate": 0.0495}],
+      "Joint": [{"limit": 1207, "rate": 0.02}, {"limit": 2414, "rate": 0.025}, {"limit": 3621, "rate": 0.03}, {"limit": 4828, "rate": 0.035}, {"limit": 6035, "rate": 0.04}, {"limit": 7242, "rate": 0.045}, {"limit": 8449, "rate": 0.048}, {"limit": null, "rate": 0.0495}]
+    },
+    "MT": {
+      "state_name": "Montana", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 20500, "rate": 0.047}, {"limit": null, "rate": 0.059}],
+      "Joint": [{"limit": 41000, "rate": 0.047}, {"limit": null, "rate": 0.059}]
+    },
+    "NE": {
+      "state_name": "Nebraska", "Standard_Deduction": {"Single": 7900, "Joint": 15800},
+      "Single": [{"limit": 3700, "rate": 0.0246}, {"limit": 22170, "rate": 0.0351}, {"limit": 35730, "rate": 0.0501}, {"limit": null, "rate": 0.0584}],
+      "Joint": [{"limit": 7400, "rate": 0.0246}, {"limit": 44340, "rate": 0.0351}, {"limit": 71460, "rate": 0.0501}, {"limit": null, "rate": 0.0584}]
+    },
+    "NM": {
+      "state_name": "New Mexico", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 5500, "rate": 0.017}, {"limit": 11000, "rate": 0.032}, {"limit": 16000, "rate": 0.047}, {"limit": 210000, "rate": 0.049}, {"limit": null, "rate": 0.059}],
+      "Joint": [{"limit": 8000, "rate": 0.017}, {"limit": 16000, "rate": 0.032}, {"limit": 24000, "rate": 0.047}, {"limit": 315000, "rate": 0.049}, {"limit": null, "rate": 0.059}]
+    },
+    "ND": {
+      "state_name": "North Dakota", "Standard_Deduction": {"Single": 14600, "Joint": 29200},
+      "Single": [{"limit": 44725, "rate": 0.0}, {"limit": 225975, "rate": 0.0195}, {"limit": null, "rate": 0.025}],
+      "Joint": [{"limit": 74750, "rate": 0.0}, {"limit": 275050, "rate": 0.0195}, {"limit": null, "rate": 0.025}]
+    },
+    "OK": {
+      "state_name": "Oklahoma", "Standard_Deduction": {"Single": 6350, "Joint": 12700},
+      "Single": [{"limit": 1000, "rate": 0.0025}, {"limit": 2500, "rate": 0.0075}, {"limit": 3750, "rate": 0.0175}, {"limit": 4900, "rate": 0.0275}, {"limit": 7200, "rate": 0.0375}, {"limit": null, "rate": 0.0475}],
+      "Joint": [{"limit": 2000, "rate": 0.0025}, {"limit": 5000, "rate": 0.0075}, {"limit": 7500, "rate": 0.0175}, {"limit": 9800, "rate": 0.0275}, {"limit": 12200, "rate": 0.0375}, {"limit": null, "rate": 0.0475}]
+    },
+    "RI": {
+      "state_name": "Rhode Island", "Standard_Deduction": {"Single": 10000, "Joint": 20000},
+      "Single": [{"limit": 73450, "rate": 0.0375}, {"limit": 166950, "rate": 0.0475}, {"limit": null, "rate": 0.0599}],
+      "Joint": [{"limit": 73450, "rate": 0.0375}, {"limit": 166950, "rate": 0.0475}, {"limit": null, "rate": 0.0599}]
+    },
+    "VT": {
+      "state_name": "Vermont", "Standard_Deduction": {"Single": 7450, "Joint": 14900},
+      "Single": [{"limit": 43950, "rate": 0.0335}, {"limit": 106350, "rate": 0.066}, {"limit": 221800, "rate": 0.076}, {"limit": null, "rate": 0.0875}],
+      "Joint": [{"limit": 73350, "rate": 0.0335}, {"limit": 177050, "rate": 0.066}, {"limit": 269700, "rate": 0.076}, {"limit": null, "rate": 0.0875}]
+    },
+    "WV": {
+      "state_name": "West Virginia", "Standard_Deduction": {"Single": 0, "Joint": 0},
+      "Single": [{"limit": 10000, "rate": 0.0236}, {"limit": 25000, "rate": 0.0315}, {"limit": 40000, "rate": 0.0354}, {"limit": 60000, "rate": 0.0472}, {"limit": null, "rate": 0.0512}],
+      "Joint": [{"limit": 10000, "rate": 0.0236}, {"limit": 25000, "rate": 0.0315}, {"limit": 40000, "rate": 0.0354}, {"limit": 60000, "rate": 0.0472}, {"limit": null, "rate": 0.0512}]
     }
   }
 }
