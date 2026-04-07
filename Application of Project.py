@@ -3,9 +3,6 @@ import pandas as pd
 import json
 
 # --- 1. REGIONAL PRICE PARITY (RPP) DATABASE ---
-# Data from the Bureau of Economic Analysis (National Average = 100.0)
-
-# Major Metro RPPs (More specific)
 metro_rpp = {
     "San Francisco, CA": 117.4, "New York, NY": 116.0, "San Diego, CA": 115.2,
     "Los Angeles, CA": 113.1, "Seattle, WA": 111.3, "Washington, DC": 111.0,
@@ -14,7 +11,6 @@ metro_rpp = {
     "Austin, TX": 101.5, "Houston, TX": 99.4, "Atlanta, GA": 98.9
 }
 
-# 50-State RPPs (Used as a highly accurate fallback for smaller cities)
 state_rpp = {
     "AL": 88.8, "AK": 104.8, "AZ": 102.5, "AR": 89.2, "CA": 112.5, "CO": 104.0,
     "CT": 106.1, "DE": 99.0, "FL": 102.1, "GA": 94.5, "HI": 112.4, "ID": 94.2,
@@ -28,7 +24,23 @@ state_rpp = {
 }
 
 
-# --- 2. THE PROGRESSIVE MATH ENGINE ---
+# --- 2. MATH ENGINES ---
+def calculate_annual_mortgage(home_value, down_payment_pct=0.20, annual_rate=0.065, years=30):
+    # 30-year fixed mortgage formula
+    principal = home_value * (1 - down_payment_pct)
+    monthly_rate = annual_rate / 12
+    num_payments = years * 12
+
+    if principal <= 0:
+        return 0
+
+    monthly_payment = principal * (monthly_rate * (1 + monthly_rate) ** num_payments) / (
+                (1 + monthly_rate) ** num_payments - 1)
+    annual_property_tax = home_value * 0.012  # Estimated national average property tax
+
+    return (monthly_payment * 12) + annual_property_tax
+
+
 def calculate_progressive_tax(taxable_income, brackets):
     if taxable_income <= 0:
         return 0.0
@@ -48,7 +60,6 @@ def calculate_progressive_tax(taxable_income, brackets):
 
 def calculate_total_tax_burden(gross_income, state_abbr, filing_status, taxes_db):
     fica_tax = gross_income * 0.0765
-
     fed_data = taxes_db["Federal"]
     fed_deduction = fed_data["Standard_Deduction"][filing_status]
     fed_taxable = max(0, gross_income - fed_deduction)
@@ -67,46 +78,49 @@ def calculate_total_tax_burden(gross_income, state_abbr, filing_status, taxes_db
 def find_equivalent_gross(target_net, state_abbr, filing_status, taxes_db):
     low = target_net
     high = target_net * 3
-
     for _ in range(50):
         mid = (low + high) / 2
         test_tax, _ = calculate_total_tax_burden(mid, state_abbr, filing_status, taxes_db)
         test_net = mid - test_tax
-
         if abs(test_net - target_net) < 1:
             return mid
         elif test_net < target_net:
             low = mid
         else:
             high = mid
-
     return mid
 
 
-# --- 3. DATA LOADING & LOOKUP ---
+# --- 3. DATA LOADING ---
 @st.cache_data
 def load_databases():
     with open('taxes.json', 'r') as file:
         taxes_db = json.load(file)
 
-    df = pd.read_csv('zillow_rent.csv')
-    latest_month = df.columns[-1]
-    df_clean = df.dropna(subset=[latest_month, 'RegionName'])
-    zillow_db = dict(zip(df_clean['RegionName'], df_clean[latest_month]))
+    # Load Rent
+    df_rent = pd.read_csv('zillow_rent.csv')
+    latest_month_rent = df_rent.columns[-1]
+    df_rent_clean = df_rent.dropna(subset=[latest_month_rent, 'RegionName'])
+    zillow_rent_db = dict(zip(df_rent_clean['RegionName'], df_rent_clean[latest_month_rent]))
 
+    # Load Homes
+    df_homes = pd.read_csv('zillow_homes.csv')
+    latest_month_home = df_homes.columns[-1]
+    df_homes_clean = df_homes.dropna(subset=[latest_month_home, 'RegionName'])
+    zillow_home_db = dict(zip(df_homes_clean['RegionName'], df_homes_clean[latest_month_home]))
+
+    # We only want cities that exist in BOTH the rent and home databases to avoid crashes
     available_states = list(taxes_db["States"].keys())
-    valid_cities = [city for city in zillow_db.keys() if str(city).split(', ')[-1] in available_states]
+    valid_cities = [city for city in zillow_rent_db.keys() if
+                    city in zillow_home_db and str(city).split(', ')[-1] in available_states]
     valid_cities.sort(key=lambda x: (x.split(', ')[-1], x.split(', ')[0]))
 
-    return taxes_db, zillow_db, valid_cities
+    return taxes_db, zillow_rent_db, zillow_home_db, valid_cities
 
 
 def get_rpp(city_name):
-    # Check if we have specific metro data
     if city_name in metro_rpp:
         return metro_rpp[city_name]
-
-    # Otherwise, fall back to the State average (National Avg = 100)
     state_abbr = city_name.split(', ')[-1]
     return state_rpp.get(state_abbr, 100.0)
 
@@ -115,14 +129,20 @@ def get_rpp(city_name):
 st.title("Relocation Value Calculator 🏙️")
 st.write("Compare the true purchasing power of a job offer using LIVE housing and regional price parity data.")
 
-taxes_db, zillow_db, valid_cities = load_databases()
+taxes_db, zillow_rent_db, zillow_home_db, valid_cities = load_databases()
 
 if not valid_cities:
     st.error("No valid cities found. Check database formatting.")
     st.stop()
 
-st.markdown("### Tax Bracket Selection")
-filing_status = st.radio("How will you be filing your taxes?", options=["Single", "Joint"], horizontal=True)
+colA, colB = st.columns(2)
+with colA:
+    st.markdown("### 1. Tax Bracket")
+    filing_status = st.radio("Filing Status:", options=["Single", "Joint"], horizontal=True)
+with colB:
+    st.markdown("### 2. Housing Strategy")
+    housing_preference = st.radio("I plan to:", options=["Rent", "Buy"], horizontal=True)
+
 st.markdown("---")
 
 col1, col2 = st.columns(2)
@@ -141,31 +161,34 @@ with col2:
 if st.button("Calculate True Value"):
     with st.spinner("Running cost-of-living algorithms..."):
 
-        # Pull the RPP indexes instead of CPI
         c1_rpp = get_rpp(current_city)
         c2_rpp = get_rpp(offer_city)
-
         c1_state = current_city.split(', ')[-1]
         c2_state = offer_city.split(', ')[-1]
 
-        # 1. Calculate current net income and lifestyle baseline
         c1_tax_dollars, c1_effective_rate = calculate_total_tax_burden(current_salary, c1_state, filing_status,
                                                                        taxes_db)
         c1_net = current_salary - c1_tax_dollars
-        c1_fixed_rent = zillow_db[current_city] * 12
-        c1_discretionary = c1_net - c1_fixed_rent
 
-        # 2. Project required lifestyle in City 2 using RPP Ratio
+        # ROUTING LOGIC: Rent vs Buy
+        if housing_preference == "Rent":
+            c1_fixed_housing = zillow_rent_db[current_city] * 12
+            c2_fixed_housing = zillow_rent_db[offer_city] * 12
+            housing_string_c1 = f"${zillow_rent_db[current_city]:,.2f}/mo rent"
+            housing_string_c2 = f"${zillow_rent_db[offer_city]:,.2f}/mo rent"
+        else:
+            c1_fixed_housing = calculate_annual_mortgage(zillow_home_db[current_city])
+            c2_fixed_housing = calculate_annual_mortgage(zillow_home_db[offer_city])
+            housing_string_c1 = f"${zillow_home_db[current_city]:,.0f} home (6.5% rate)"
+            housing_string_c2 = f"${zillow_home_db[offer_city]:,.0f} home (6.5% rate)"
+
+        c1_discretionary = c1_net - c1_fixed_housing
+
         purchasing_power_ratio = c2_rpp / c1_rpp
-        c2_fixed_rent = zillow_db[offer_city] * 12
         c2_required_discretionary = c1_discretionary * purchasing_power_ratio
 
-        c2_required_net = c2_required_discretionary + c2_fixed_rent
-
-        # 3. Use the Binary Search solver to find the required gross salary
+        c2_required_net = c2_required_discretionary + c2_fixed_housing
         target_gross_salary = find_equivalent_gross(c2_required_net, c2_state, filing_status, taxes_db)
-
-        # 4. Calculate the effective tax rate of the new offer so we can display it!
         _, c2_effective_rate = calculate_total_tax_burden(offer_salary, c2_state, filing_status, taxes_db)
 
         # --- 6. OUTPUT UI ---
@@ -186,7 +209,7 @@ if st.button("Calculate True Value"):
 
         st.caption(f"**Data Sources Used:**")
         st.caption(
-            f"- **Housing (Zillow):** {current_city} (${zillow_db[current_city]:,.2f}/mo) | {offer_city} (${zillow_db[offer_city]:,.2f}/mo)")
+            f"- **Housing Strategy ({housing_preference}):** {current_city} ({housing_string_c1}) | {offer_city} ({housing_string_c2})")
         st.caption(
             f"- **Discretionary Goods (BEA Regional Price Parity):** {current_city} ({c1_rpp}) | {offer_city} ({c2_rpp})")
         st.caption(
